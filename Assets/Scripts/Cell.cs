@@ -8,6 +8,8 @@ public class Cell : MonoBehaviour
 }
 
 
+
+
 public enum CellType
 {
     Cross, 
