@@ -13,23 +13,25 @@
          _cells = cells;
      }
      
+     private readonly (int, int)[] _directions = 
+     {
+         (1, 0), 
+         (0, 1), 
+         (1, 1), 
+         (1, -1) 
+     };
+
      public bool CheckWin(CellType cellType)
      {
          for (var x = 0; x < _width; x++)
          {
              for (var y = 0; y < _height; y++)
              {
-                 if (CheckLine(cellType, x, y, 1, 0, 5))
-                     return true;
-                    
-                 if (CheckLine(cellType, x, y, 0, 1, 5))
-                     return true;
-                    
-                 if (CheckLine(cellType, x, y, 1, 1, 5))
-                     return true;
-                    
-                 if (CheckLine(cellType, x, y, 1, -1, 5))
-                     return true;
+                 foreach (var (dx, dy) in _directions)
+                 {
+                     if (CheckLine(cellType, x, y, dx, dy, 5))
+                         return true;
+                 }
              }
          }
          return false;

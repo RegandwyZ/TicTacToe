@@ -8,43 +8,46 @@ public class GameBoardView : MonoBehaviour
     [SerializeField] private GameObject _crossSprite;
     [SerializeField] private GameObject _zeroSprite;
     
-    
     [SerializeField] private TextMeshProUGUI _crossWinning;
     [SerializeField] private TextMeshProUGUI _zeroWinning;
 
     [SerializeField] private Button _restart;
-    
-    
-    public void RestartGame()
+
+    public void RestartGameButton()
     {
         _restart.gameObject.SetActive(true);
     }
 
-    public void ShowCrossVictoryText()
+    public void ShowVictoryText(PlayerType type)
     {
-        _crossWinning.gameObject.SetActive(true);
-    }
-    
-    public void ShowZeroVictoryText()
-    {
-        _zeroWinning.gameObject.SetActive(true);
-    }
-    
-    public bool ChangeCrossZero(bool value)
-    {
-        switch (value)
+        switch (type)
         {
-            case true:
+            case PlayerType.Cross:
+                _crossWinning.gameObject.SetActive(true);
+                break;
+            
+            case PlayerType.Zero:
+                _zeroWinning.gameObject.SetActive(true);
+                break;
+        }
+    }
+    
+    
+    public PlayerType ChangePlayer(PlayerType type)
+    {
+        switch (type)
+        {
+            case PlayerType.Zero:
                 _crossSprite.SetActive(true);
                 _zeroSprite.SetActive(false);
                 break;
             
-            case false:
+            case PlayerType.Cross:
                 _crossSprite.SetActive(false);
                 _zeroSprite.SetActive(true);
                 break;
         }
 
-        return !value;
+        return type == PlayerType.Cross ? PlayerType.Zero : PlayerType.Cross;
     }
 }
