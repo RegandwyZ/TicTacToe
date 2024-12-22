@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 524758251}
-  _inputSystem: {fileID: 2083970048}
 --- !u!4 &378514207
 Transform:
   m_ObjectHideFlags: 0

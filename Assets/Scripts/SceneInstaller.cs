@@ -8,17 +8,14 @@ public class SceneInstaller : MonoInstaller
     public override void InstallBindings()
     {
         InitBoard();
-        InitGameBoardController();
-    }
 
-    private void InitGameBoardController()
-    {
-        Container.Bind<GameBoardController>().AsSingle().WithArguments(
-            _board.InitializeUpdateBoard(),
-            _board.InitializeCheckWinCondition(),
-            _board.GetGameBoardView()
-        );
+        Container.Bind<UpdateBoard>().FromInstance(_board.InitializeUpdateBoard()).AsSingle();
+        Container.Bind<CheckWinCondition>().FromInstance(_board.InitializeCheckWinCondition()).AsSingle();
+        Container.Bind<GameBoardView>().FromInstance(_board.GetGameBoardView()).AsSingle();
+        
+        Container.Bind<GameBoardController>().AsSingle();
     }
+    
 
     private void InitBoard()
     {
