@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class InputSystem : MonoBehaviour
 {
@@ -10,10 +11,16 @@ public class InputSystem : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
-    public void SetController(GameBoardController boardController)
+    [Inject] 
+    private void Construct(GameBoardController boardController)
     {
         _boardController = boardController;
     }
+    
+    /*public void SetController(GameBoardController boardController)
+    {
+        _boardController = boardController;
+    }*/
     
     private void Update()
     {
@@ -33,4 +40,6 @@ public class InputSystem : MonoBehaviour
             }
         }
     }
+
+   
 }

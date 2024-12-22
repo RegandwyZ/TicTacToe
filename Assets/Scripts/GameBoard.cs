@@ -10,12 +10,17 @@ public class GameBoard : MonoBehaviour
     
     private Cell[,] _cells;
 
+    public void InitializeBoard()
+    {
+        InitializeArray();
+    }
+    
     public GameBoardView GetGameBoardView()
     {
         return _boardView;
     }
     
-    public void InitializeArray()
+    private void InitializeArray()
     {
         _cells = new Cell[_width, _height];
     }
@@ -41,4 +46,6 @@ public class GameBoard : MonoBehaviour
     {
         return new CheckWinCondition(_width, _height, _cells);
     }
+
+   
 }
